@@ -1,43 +1,7 @@
 import random
 
-def gcd(a, b):
-    '''НОД a и b'''
-    while b != 0:
-        a, b = b, a % b
-    return a
+from algorithms import gcd, generate_primes
 
-def is_prime(n, k=50):
-    '''Функция для проверки числа на простоту на основе теста Миллера-Рабина'''
-    if n == 2 or n == 3:
-        return True
-    if n <= 1 or n % 2 == 0:
-        return False
-    r, s = 0, n - 1
-    while s % 2 == 0:
-        r += 1
-        s //= 2
-    for _ in range(k):
-        a = random.randint(2, n - 1)
-        x = pow(a, s, n)
-        if x == 1 or x == n - 1:
-            continue
-        for _ in range(r - 1):
-            x = pow(x, 2, n)
-            if x == n - 1:
-                break
-        else:
-            return False
-    return True
-
-def generate_primes(start_num=2*10, end_num=2**20):
-    '''Функция для генерации 2 простых чисел p и q'''
-    p = random.randint(start_num, end_num)
-    while not is_prime(p):
-        p = random.randint(start_num, end_num)
-    q = random.randint(start_num, end_num)
-    while not is_prime(q) or q == p:
-        q = random.randint(start_num, end_num)
-    return p, q
 
 def euler(p, q):
     '''Значение функции Эйлера от произведения p и q.
@@ -65,6 +29,7 @@ def generate_d(phi, e):
 
 if __name__ == '__main__':
     p, q = generate_primes()
+    print(f"p = {p}, q = {q}")
     n = p * q
     phi = euler(p, q)
     e = generate_e(phi)
@@ -81,7 +46,6 @@ if __name__ == '__main__':
     print(f'enc: {enc}')
 
 
-# страница 106 (взлом алгоритма) -1
-# адаптировать для работы с текстом
+
 
 
