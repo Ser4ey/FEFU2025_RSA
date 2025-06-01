@@ -1,6 +1,6 @@
 from algorithms import generate_primes, euler, generate_e, generate_d
 
-class RSAKeyGen:
+class RSAAlgorithm:
     @staticmethod
     def generate_keys(start_num=2*5, end_num=2**10):
         # генерируем 2 простых числа в задном диапозоне
@@ -20,6 +20,14 @@ class RSAKeyGen:
         print(f'Закрытый ключ (d, n) = ({d}, {n})')
 
         return p, q, n, e, d
+
+    @staticmethod
+    def encrypt(message, e, n):
+        return pow(message, e, n)
+
+    @staticmethod
+    def decrypt(message, d, n):
+        return pow(message, d, n)
 
 
 if __name__ == '__main__':
@@ -45,6 +53,6 @@ if __name__ == '__main__':
         except ValueError:
             print("Ошибка: Введите корректное целое число.")
 
-    RSAKeyGen.generate_keys(start, end)
+    RSAAlgorithm.generate_keys(start, end)
 
 

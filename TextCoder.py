@@ -8,7 +8,7 @@ class TextCoder:
              'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э',
              'Ю', 'Я', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
              't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-             'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ' ', '.', ',', '!', '?', ';', ':', '(', ')',
+             'O', '0', '9', '8', '7', '6', '5', '4', '3', '2', '1', 'Z', ' ', '.', ',', '!', '?', ';', ':', '(', ')',
              '"', "'", ""]
 
     alpha_set = set(alpha)
@@ -26,26 +26,33 @@ class TextCoder:
               f"Блок содержит символов: {self.number_of_char_in_block} ")
 
     def text_to_numbers(self, text):
+        print(f"[*] Кодируем текст")
         n = []
         for char in text:
             if not (char in self.alpha_set):
                 print(f"Символа '{char}' нет в алфавите. Он будет заменён на '?'")
             n.append(TextCoder.alpha_dict.get(char, TextCoder.alpha_dict.get("?")))
+            p = '" "'
+            print(f"{char if char != ' ' else p} -> {TextCoder.alpha_dict.get(char, TextCoder.alpha_dict.get('?'))}")
 
         # print(len(n))
         # print(n)
         # print(self.number_of_char_in_block)
 
-        n = ['1'*7] * (self.number_of_char_in_block - len(n) % self.number_of_char_in_block) + n
+        if len(n) % self.number_of_char_in_block != 0:
+            n = ['1'*7] * (self.number_of_char_in_block - len(n) % self.number_of_char_in_block) + n
+
         # print(len(n))
-        print(n)
+        # print(n)
 
         result = []
 
+        print(f"\n[*] Разбиваем текст на блоки по {self.number_of_char_in_block} и преобразуем в десятичную систему")
         for i in range(len(n) // self.number_of_char_in_block):
             current = []
             for j in range(self.number_of_char_in_block):
                 current.append(n[i*self.number_of_char_in_block+j])
+            print(f"{current} -> {int(''.join(current), 2)}")
             result.append(str(int("".join(current), 2)))
 
         return ",".join(result)
@@ -67,12 +74,12 @@ if __name__ == "__main__":
     print(f"Алфавит содержит следующие символы")
     print(TextCoder.alpha_dict)
 
-    text = "Всем привет! Это супер алгоритм!"
-    a = TextCoder(128**5)
+    text = "aat"
+    a = TextCoder(128**2)
     n = a.text_to_numbers(text)
     print(n)
 
-    print(a.number_to_text(34359726353))
+    # print(a.number_to_text(34359726353))
     # 575750,3735292041,818216053,16683104914,5402364149,293668753
     print(a.numbers_to_text(n))
 
