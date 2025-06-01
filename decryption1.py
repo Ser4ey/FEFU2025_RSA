@@ -7,20 +7,22 @@ def decrypt_message_ciphertext(ciphertext, e, n, text="Блок: 1. Текущи
     '''
     for i in range(2, n+1):
         if RSAAlgorithm.decrypt(i, e, n) == ciphertext:
-            print(f"Пробуем число {i} в качестве сообщения - успех!")
+            # print(f"Пробуем число {i} в качестве сообщения - успех!")
             print(f"[+] Сообщение успешно расшифровано!")
             return i
-        print(f"Пробуем число {i} в качестве сообщения - неудача")
+        # print(f"Пробуем число {i} в качестве сообщения - неудача")
+        print(f"{text}{i}")
 
     print(f"[-] Не удалось расшифровать сообщение")
     return 0
 
 
 if __name__ == '__main__':
-    print('''Атака на RSA через перебор малых сообщений и итерационное возведение в степень e''')
+    print('''--- Атака на RSA через перебор малых сообщений и итерационное возведение в степень e ---''')
+    print("")
 
     ciphertext = input("Введите зашифрованное сообщение:")
-    e, n = map(int, input("Введите открытый ключ сообщение:").strip("()").split(", "))
+    e, n = map(int, input("Введите открытый ключ:").strip().strip("()").split(", "))
 
     text_coder = TextCoder(n)
 

@@ -25,8 +25,8 @@ def get_start_end():
 
 
 def main():
-    start = 2**10
-    end = 2**12
+    start = 2**7
+    end = 2**10
     # start, end = get_start_end()
 
     print(f"[*] Данные для RSA генерируются...")
