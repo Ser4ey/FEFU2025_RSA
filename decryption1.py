@@ -8,7 +8,7 @@ def decrypt_message_ciphertext(ciphertext, e, n, text="Блок: 1. Текущи
     for i in range(2, n+1):
         if RSAAlgorithm.decrypt(i, e, n) == ciphertext:
             # print(f"Пробуем число {i} в качестве сообщения - успех!")
-            print(f"[+] Сообщение успешно расшифровано!")
+            print(f"[+] Сообщение успешно расшифровано! Исходный текст: {i}")
             return i
         # print(f"Пробуем число {i} в качестве сообщения - неудача")
         print(f"{text}{i}")

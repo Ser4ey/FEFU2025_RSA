@@ -29,11 +29,12 @@ if __name__ == '__main__':
 
     print()
 
-    text_coder = TextCoder(n)
 
     encrypted_text = [str(RSAAlgorithm.decrypt(int(i), d, n)) for i in ciphertext.split(",")]
     encrypted_text = ','.join(encrypted_text)
+    print(f"Дешифрованное сообщение: {encrypted_text}")
 
+    text_coder = TextCoder(n)
     print(f"Текст: {text_coder.numbers_to_text(encrypted_text)}")
 
 

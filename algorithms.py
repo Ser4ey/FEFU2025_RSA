@@ -81,7 +81,7 @@ def simple_factorization(n):
 def pollards_rho(n):
     '''Алгоритм Полларда для факторизации чисел:
     https://en.wikipedia.org/wiki/Pollard%27s_rho_algorithm
-    Работает для 2^40
+    Работает для 2^40 (За O(n^0.25))
     '''
     if n % 2 == 0:
         return 2
