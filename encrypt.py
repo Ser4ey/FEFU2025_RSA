@@ -5,7 +5,7 @@ def get_start_end():
     # Ввод нижней границы (start)
     while True:
         try:
-            start = int(input("Введите нижнюю границу для p и q: "))
+            start = int(input("Введите нижнюю границу длины для p и q (1 число): "))
             break
         except ValueError:
             print("Ошибка: Введите корректное целое число.")
@@ -13,7 +13,7 @@ def get_start_end():
     # Ввод верхней границы (end)
     while True:
         try:
-            end = int(input("Введите верхнюю границу для p и q: "))
+            end = int(input("Введите верхнюю границу длины для p и q: "))
             if end > start:
                 break
             else:
@@ -25,14 +25,16 @@ def get_start_end():
 
 
 def main():
-    start = 2**7
-    end = 2**10
-    # start, end = get_start_end()
+    # start = 10**14
+    # end = 10**15
+    start, end = get_start_end()
+    start = 10**start
+    end = 10**end
 
     print(f"[*] Данные для RSA генерируются...")
     p, q, n, e, d = RSAAlgorithm.generate_keys(start, end)
-    print()
 
+    print()
 
     text_coder = TextCoder(n)
     print()

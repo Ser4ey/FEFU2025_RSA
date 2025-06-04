@@ -9,7 +9,7 @@ class RSAAlgorithm:
         # print(f"Сгенерированы p и q")
         print(f"p = {p}")
         print(f"q = {q}")
-        print(f"n = p*q = {n}")
+        print(f"n = p*q = {n} (Количество знаков: {len(str(n))})")
 
         phi = euler(p, q)
         print(f"phi (функция Эйлера) = {phi}")

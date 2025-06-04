@@ -28,9 +28,10 @@ def generate_d(phi, e):
 
 
 if __name__ == '__main__':
-    p, q = generate_primes()
+    p, q = generate_primes(10*15, 10**16)
     print(f"p = {p}, q = {q}")
     n = p * q
+    print(f"n = {n}")
     phi = euler(p, q)
     e = generate_e(phi)
     d = generate_d(phi, e)

@@ -1,3 +1,5 @@
+import time
+
 from algorithms import pollards_rho, simple_factorization, euler, generate_d
 from rsa_algorithm import RSAAlgorithm
 from TextCoder import TextCoder
@@ -12,8 +14,12 @@ if __name__ == '__main__':
 
     print(f"\n[*] Факторизуем число n. Это может занять много времени")
 
+    start_time = time.time()
+
     p = pollards_rho(n)
     # p = simple_factorization(n)[0] # медленная факторизация
+
+    print(f"Факторизация заняла: {time.time() - start_time} секунд")
 
     print(f"\n[+] Число n факторизовано!")
     print(f"p = {p}")
